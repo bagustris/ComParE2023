@@ -1,3 +1,5 @@
+***Forked from [EIHW/ComParE2023]***
+
 # ComParE23 - The Hume-Prosody Corpus (HP-C)
 This repository provides the code for running my participation for The Hume-Prosody Corpus (HP-C) subchallenge of ComParE2023 (excluding feature extraction).
 
@@ -5,7 +7,7 @@ This repository provides the code for running my participation for The Hume-Pros
 ## Getting the code
 Clone this repository and checkout the correct branch:
 ```bash
-git clone --branch HP-C https://github.com/bagustris/ComParE2023
+git clone https://github.com/bagustris/ComParE2023
 ```
 
 ## Adding the data
@@ -28,9 +30,14 @@ Create virtual environment with python 3.9:
 
 `conda create -n ComParE2023 python=3.9`
 
-Install dependencies:
+Install dependencies:  
 `pip install -r requirements.txt`
 
+Run the experiments:  
+`python src/ml/svm.py wav2vec`
+
+Calculate the results' score:  
+`python src/ml/metrics.py wav2vec`
 
 ## Extracting features
 To extract feature from Hugging Face, you can use `feat_extract.py` with 
