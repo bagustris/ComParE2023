@@ -1,4 +1,4 @@
-***Forked from [EIHW/ComParE2023]***
+***Forked from [EIHW/ComParE2023](http:github.com/EIHW/ComParE2023)***
 
 # ComParE23 - The Hume-Prosody Corpus (HP-C)
 This repository provides the code for running my participation for The Hume-Prosody Corpus (HP-C) subchallenge of ComParE2023 (excluding feature extraction).
