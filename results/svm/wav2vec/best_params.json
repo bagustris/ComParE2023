@@ -1,0 +1,1 @@
+{"scaler": "MinMaxScaler()", "svm__estimator": "LinearSVR(C=0.01, max_iter=50000, random_state=42)", "svm__estimator__C": "0.01", "svm__estimator__loss": "epsilon_insensitive", "svm__estimator__max_iter": 50000}

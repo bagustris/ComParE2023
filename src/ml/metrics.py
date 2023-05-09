@@ -150,8 +150,8 @@ def compute_metrics(devel_df, test_df, params):
 
 if __name__ == "__main__":
     experiment = sys.argv[1]
-    result_folder = f"./results/{experiment}"
-    metrics_folder = f"./metrics/{experiment}"
+    result_folder = f"./results/svm/{experiment}"
+    metrics_folder = f"./metrics/svm/{experiment}"
     lab_folder = f"./data/lab/"
     devel_df = pd.read_csv(join(result_folder, "predictions.devel.csv"))
 

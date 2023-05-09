@@ -1,11 +1,11 @@
 # ComParE23 - The Hume-Prosody Corpus (HP-C)
-This repository provides the code for running the official baselines for the The Hume-Prosody Corpus (HP-C) subchallenge of ComParE2023 (excluding feature extraction).
+This repository provides the code for running my participation for The Hume-Prosody Corpus (HP-C) subchallenge of ComParE2023 (excluding feature extraction).
 
 
 ## Getting the code
 Clone this repository and checkout the correct branch:
 ```bash
-git clone --branch HP-C https://github.com/EIHW/ComParE2023
+git clone --branch HP-C https://github.com/bagustris/ComParE2023
 ```
 
 ## Adding the data
@@ -23,21 +23,23 @@ data
 └── wav
 ```
 
-## Installing the dependencies
-Install [poetry](https://python-poetry.org/docs/)
+## Creating Virtual Enviroments via Miniconda
+Create virtual environment with python 3.9:
 
-`poetry install`
+`conda create -n ComParE2023 python=3.9`
 
-## Reproducing the baseline
-To reproduce the baseline for `wav2vec2` (excluding feature extraction), run:
+Install dependencies:
+`pip install -r requirements.txt`
 
-```console
-poetry run dvc repro
-```
 
-## Notes 
-If you want to reproduce the feature extraction follow the steps in the HC-C branch. To avoid platform specific requirements, use the provided docker image. All parameters for feature extraction are given in `params.yaml` of this branch (`HP-C`).
+## Extracting features
+To extract feature from Hugging Face, you can use `feat_extract.py` with 
+arguments `name` [output directory] and `Hugging Face model name` [e.g. facebook/wav2vec2-large-xlsr-53].
 
-Currently only `wav2vec2` will run, running all experiements will take some time, but you can uncomment the `dvc.yaml` to do this. 
+```bash
+./feat_extract.py xlsr-53 jonatasgrosman/wav2vec2-large-xlsr-53-english
+``` 
 
+You need to change permission (`chmod +x feat_extract.py`) to run the script 
+directly.
 

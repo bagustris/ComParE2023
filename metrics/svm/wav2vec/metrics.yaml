@@ -1,0 +1,31 @@
+devel:
+  Anger_ci_high_rho: 0.44448915981912746
+  Anger_ci_low_rho: 0.41126238468169735
+  Anger_rho: 0.4283079493324569
+  Boredom_ci_high_rho: 0.5606536152897398
+  Boredom_ci_low_rho: 0.5309227005935458
+  Boredom_rho: 0.5450628261448113
+  Calmness_ci_high_rho: 0.573900042435012
+  Calmness_ci_low_rho: 0.5460140617577469
+  Calmness_rho: 0.5597407407253975
+  Concentration_ci_high_rho: 0.5402277930111656
+  Concentration_ci_low_rho: 0.508987727659557
+  Concentration_rho: 0.5243178602723031
+  Determination_ci_high_rho: 0.546020059525458
+  Determination_ci_low_rho: 0.5161499305264065
+  Determination_rho: 0.5313255424197927
+  Excitement_ci_high_rho: 0.46989999846312114
+  Excitement_ci_low_rho: 0.43607802879738145
+  Excitement_rho: 0.45358342004024776
+  Interest_ci_high_rho: 0.44775597002193884
+  Interest_ci_low_rho: 0.41491645676245775
+  Interest_rho: 0.43140478678549876
+  Sadness_ci_high_rho: 0.4931187618852056
+  Sadness_ci_low_rho: 0.45931866780925357
+  Sadness_rho: 0.47685680579727596
+  Tiredness_ci_high_rho: 0.565936517546544
+  Tiredness_ci_low_rho: 0.5356169255454962
+  Tiredness_rho: 0.5505773563845591
+  '[Mean_Rho_CI]': (0.48436298712594916 - 0.5157779908885902)
+  '[Mean_rho]': 0.500130809766927
+test: {}

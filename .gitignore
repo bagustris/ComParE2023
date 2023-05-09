@@ -1,4 +1,4 @@
-data/
-metrics/ 
-results/
-cache/
+./results
+./tokenizer
+./vocab.json
+./data
