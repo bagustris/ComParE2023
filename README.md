@@ -43,6 +43,10 @@ Calculate the results' score:
 To extract feature from Hugging Face, you can use `feat_extract.py` with 
 arguments `name` [output directory] and `Hugging Face model name` [e.g. facebook/wav2vec2-large-xlsr-53].
 
+Format:  
+`./feat_extract.py [output directory] [Hugging Face model name] [device]`
+
+Example:
 ```bash
 ./feat_extract.py xlsr-53 jonatasgrosman/wav2vec2-large-xlsr-53-english
 ``` 

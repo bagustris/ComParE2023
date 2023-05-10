@@ -10,7 +10,6 @@ import librosa
 import yaml
 
 
-import os
 from os.path import basename
 from tqdm import tqdm
 from glob import glob
@@ -24,7 +23,8 @@ from transformers import (
 if __name__ == "__main__":
     feature = sys.argv[1]
     model = sys.argv[2]
-    device = "cpu"
+    device = sys.argv[3]
+    # device = "cpu"  # or "cuda"
     INPUT_DIR = "./data/wav"
     OUTPUT_DIR = "./data/features/{feature}"
     wavs = sorted(glob(f"{INPUT_DIR}/*.wav"))
@@ -52,14 +52,14 @@ if __name__ == "__main__":
     model = Wav2Vec2Model.from_pretrained(model).to(device)
     model.eval()
 
-    embeddings = torch.zeros(len(index), 1024)
+    embeddings = torch.zeros(len(index), model.config.hidden_size) # 1024
     for counter, wav in tqdm(enumerate(wavs)):
         print(f"Processing {wav}")
         audio, fs = librosa.core.load(wav)
         audio = torch.from_numpy(audio)
         if fs != 16000:
             audio = torchaudio.transforms.Resample(fs, 16000)(audio)
-        if len(audio.shape) == 2:
+        if len(audio.shape) == 2:  # multiple channels, average
             audio = audio.mean(0)
         inputs = processor(
             audio, sampling_rate=16000, return_tensors="pt", padding=True
