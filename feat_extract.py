@@ -10,7 +10,7 @@ import librosa
 import yaml
 
 
-from os import makedirs
+import os
 from os.path import basename
 from tqdm import tqdm
 from glob import glob
@@ -20,7 +20,6 @@ from transformers import (
     Wav2Vec2Processor,
     Wav2Vec2CTCTokenizer,
 )
-
 
 if __name__ == "__main__":
     feature = sys.argv[1]
@@ -50,9 +49,7 @@ if __name__ == "__main__":
 
     processor = Wav2Vec2Processor(feature_extractor=extractor, 
                                   tokenizer=tokenizer)
-    model = Wav2Vec2Model.from_pretrained(model).to(
-        device
-    )
+    model = Wav2Vec2Model.from_pretrained(model).to(device)
     model.eval()
 
     embeddings = torch.zeros(len(index), 1024)
@@ -77,10 +74,11 @@ if __name__ == "__main__":
                 .mean(1)
                 .squeeze(0)
             )
-    makedirs(OUTPUT_DIR, exist_ok=True)
+    if not os.path.exists(f"{OUTPUT_DIR}"):
+        os.makedirs(f"{OUTPUT_DIR}", exist_ok=True)
     pd.DataFrame(
         data=embeddings.numpy(),
         columns=[f"Neuron_{x}" for x in range(embeddings.shape[1])],
         index=index,
-        index_label="name"
-    ).reset_index().to_csv(f"{OUTPUT_DIR}/features.csv", index=False)
+    ).reset_index().to_csv(f"{OUTPUT_DIR}/features.csv", 
+                           index=False, index_label="name")
