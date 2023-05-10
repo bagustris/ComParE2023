@@ -1,3 +1,4 @@
+numpy == 1.20.0
 torch == 1.13
 transformers == 4.21.1
 torchaudio == 0.13

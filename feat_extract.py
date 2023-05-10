@@ -26,7 +26,7 @@ if __name__ == "__main__":
     device = sys.argv[3]
     # device = "cpu"  # or "cuda"
     INPUT_DIR = "./data/wav"
-    OUTPUT_DIR = "./data/features/{feature}"
+    OUTPUT_DIR = f"./data/features/{feature}"
     wavs = sorted(glob(f"{INPUT_DIR}/*.wav"))
     index = list(map(basename, wavs))
 
@@ -74,8 +74,8 @@ if __name__ == "__main__":
                 .mean(1)
                 .squeeze(0)
             )
-    if not os.path.exists(f"{OUTPUT_DIR}"):
-        os.makedirs(f"{OUTPUT_DIR}", exist_ok=True)
+    if not os.path.exists(OUTPUT_DIR):
+        os.makedirs(OUTPUT_DIR, exist_ok=True)
     pd.DataFrame(
         data=embeddings.numpy(),
         columns=[f"Neuron_{x}" for x in range(embeddings.shape[1])],
