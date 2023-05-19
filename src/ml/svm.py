@@ -7,7 +7,7 @@ from pathlib import Path
 from os.path import join
 
 
-import audmetric
+# import audmetric
 import numpy as np
 import pandas as pd
 from sklearn.model_selection import GridSearchCV, PredefinedSplit
@@ -17,6 +17,8 @@ from sklearn.svm import LinearSVR
 from sklearn.base import clone
 
 from sklearn.preprocessing import StandardScaler, MinMaxScaler
+import scipy.stats as stats
+from sklearn.metrics import make_scorer, mean_squared_error, r2_score
 
 COLUMN_NAMES = [
     "Anger",
@@ -92,13 +94,18 @@ def load_features(feature_file, label_base):
         feature_names,
     )
 
+def spearman_corr(y_true, y_pred):
+    corr, _ = stats.spearmanr(y_true, y_pred)
+    return np.mean(corr)
+
 
 def run_svm(feature_folder, label_base, result_folder, metrics_folder, params):
 
     if params["type"] == "regression":
         clf_class = LinearSVR
 
-        scoring = "neg_mean_absolute_error"
+        # scoring = "neg_mean_absolute_error"
+        scoring = make_scorer(spearman_corr)
         grid = [
             {
                 "scaler": [StandardScaler(), MinMaxScaler()],
@@ -139,7 +146,7 @@ def run_svm(feature_folder, label_base, result_folder, metrics_folder, params):
         n_jobs=-1,
         cv=split,
         refit=True,
-        verbose=0,
+        verbose=1,
         return_train_score=False,
     )
 
@@ -154,11 +161,12 @@ def run_svm(feature_folder, label_base, result_folder, metrics_folder, params):
     devel_preds = estimator.predict(devel_X)
 
     # Evaluate on development set
-    mean_pearsons = [
-        audmetric.pearson_cc(devel_y[:, i], devel_preds[:, i])
-        for i in range(len(COLUMN_NAMES))
-    ]
-    mean_cc = np.average(mean_pearsons)
+    # mean_pearsons = [
+    #     audmetric.pearson_cc(devel_y[:, i], devel_preds[:, i])
+    #     for i in range(len(COLUMN_NAMES))
+    # ]
+
+    # mean_cc = np.average(mean_pearsons)
 
     svm_params = make_dict_json_serializable(grid_search.best_params_)
 

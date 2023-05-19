@@ -12,11 +12,15 @@ opensmile:
 
 fusion:
   to_fuse:
-  - audeep
-  - deepspectrum
-  - opensmile
-  - wav2vec
-
+  # - audeep
+  # - deepspectrum
+  # - opensmile
+  # - wav2vec
+  # - xlsr-53
+  - xlsr-300m
+  - xlsr-2b
+  - xlsr-2b
+ 
 audeep:
   spectrograms:
     window_width: 0.08

@@ -1,6 +1,7 @@
 #!/usr/bin/env python
 import ast
 
+import sys
 import json
 import yaml
 import glob
@@ -14,10 +15,9 @@ from ml.ci import CI
 from pathlib import Path
 from os.path import join
 
-FUSION_RESULTS_PATH = "results/fusion"
-FUSION_METRICS_PATH = "metrics/fusion"
 
 if __name__ == "__main__":
+    output_dir = sys.argv[1]
     params = {}
     with open("params.yaml") as f:
         params = yaml.load(f, Loader=yaml.FullLoader)
@@ -26,6 +26,9 @@ if __name__ == "__main__":
     result_dirs = sorted(
         [os.path.join("./results/svm", f) for f in params["fusion"]["to_fuse"]]
     )
+
+    FUSION_RESULTS_PATH = f"results/fusion/{output_dir}"
+    FUSION_METRICS_PATH = f"metrics/fusion/{output_dir}"
 
     os.makedirs(FUSION_RESULTS_PATH, exist_ok=True)
     os.makedirs(FUSION_METRICS_PATH, exist_ok=True)
