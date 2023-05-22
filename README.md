@@ -44,6 +44,7 @@ Run the experiments:
 Calculate the results' score:  
 `python3 src/ml/metrics.py wav2vec`
 
+
 ## Extracting features
 To extract feature from Hugging Face, you can use `feat_extract.py` with 
 arguments `name` [output directory] and `Hugging Face model name` [e.g. facebook/wav2vec2-large-xlsr-53].
@@ -56,6 +57,5 @@ Example:
 ./feat_extract.py xlsr-53 jonatasgrosman/wav2vec2-large-xlsr-53-english
 ``` 
 
-You need to change permission (`chmod +x feat_extract.py`) to run the script 
-directly.
+You need to change permission (`chmod +x feat_extract.py`) to run the script directly.
 

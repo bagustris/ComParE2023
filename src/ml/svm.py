@@ -104,8 +104,8 @@ def run_svm(feature_folder, label_base, result_folder, metrics_folder, params):
     if params["type"] == "regression":
         clf_class = LinearSVR
 
-        # scoring = "neg_mean_absolute_error"
-        scoring = make_scorer(spearman_corr)
+        scoring = "neg_mean_squared_error"
+        # scoring = make_scorer(spearman_corr)
         grid = [
             {
                 "scaler": [StandardScaler(), MinMaxScaler()],
