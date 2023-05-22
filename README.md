@@ -24,6 +24,11 @@ data
 │  └── wav
 └── wav
 ```
+You can make a soft link (like in this repo) if your data is located elsewhere (e.g., in `/data/`).
+
+```
+ln -sf /data/14_ComParE23_HPC_AIST-SPRT/data ./data
+```
 
 ## Creating Virtual Enviroments via Miniconda
 Create virtual environment with python 3.9:
@@ -34,10 +39,10 @@ Install dependencies:
 `pip install -r requirements.txt`
 
 Run the experiments:  
-`python src/ml/svm.py wav2vec`
+`python3 src/ml/svm.py wav2vec`
 
 Calculate the results' score:  
-`python src/ml/metrics.py wav2vec`
+`python3 src/ml/metrics.py wav2vec`
 
 ## Extracting features
 To extract feature from Hugging Face, you can use `feat_extract.py` with 
