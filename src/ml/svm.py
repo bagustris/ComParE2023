@@ -108,13 +108,14 @@ def run_svm(feature_folder, label_base, result_folder, metrics_folder, params):
         # scoring = make_scorer(spearman_corr)
         grid = [
             {
-                "scaler": [StandardScaler(), MinMaxScaler()],
+                "scaler": [StandardScaler(), MinMaxScaler()], # best MinMaxScaler
                 "svm__estimator": [clf_class(random_state=RANDOM_SEED)],
                 "svm__estimator__loss": [
                     "epsilon_insensitive",
-                    "squared_epsilon_insensitive",
+                    "squared_epsilon_insensitive", # best
                 ],
-                "svm__estimator__C": np.logspace(-2, -6, num=5),
+                # "svm__estimator__C": np.logspace(-2, -6, num=5),
+                "svm__estimator__C": np.logspace(-2, 2, num=5),
                 "svm__estimator__max_iter": [50000],
             }
         ]
@@ -146,7 +147,7 @@ def run_svm(feature_folder, label_base, result_folder, metrics_folder, params):
         n_jobs=-1,
         cv=split,
         refit=True,
-        verbose=1,
+        verbose=0,
         return_train_score=False,
     )
 
