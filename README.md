@@ -30,8 +30,8 @@ You can make a soft link (like in this repo) if your data is located elsewhere (
 ln -sf /data/14_ComParE23_HPC_AIST-SPRT/data ./data
 ```
 
-## Creating Virtual Enviroments via Miniconda
-Create virtual environment with python 3.9:
+## Creating Virtual Environments via Miniconda
+Create a virtual environment with Python 3.9:
 
 `conda create -n ComParE2023 python=3.9`
 
@@ -46,7 +46,7 @@ Calculate the results' score:
 
 
 ## Extracting features
-To extract feature from Hugging Face, you can use `feat_extract.py` with 
+To extract features from Hugging Face, you can use `feat_extract.py` with 
 arguments `name` [output directory] and `Hugging Face model name` [e.g. facebook/wav2vec2-large-xlsr-53].
 
 Format:  
@@ -58,4 +58,5 @@ Example:
 ``` 
 
 You need to change permission (`chmod +x feat_extract.py`) to run the script directly.
+
 

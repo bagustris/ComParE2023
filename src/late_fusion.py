@@ -17,14 +17,15 @@ from os.path import join
 
 
 if __name__ == "__main__":
-    output_dir = sys.argv[1]
+    input_dir = sys.argv[1]
+    output_dir = sys.argv[2]
     params = {}
     with open("params.yaml") as f:
         params = yaml.load(f, Loader=yaml.FullLoader)
         params = params
 
     result_dirs = sorted(
-        [os.path.join("./results/svm", f) for f in params["fusion"]["to_fuse"]]
+        [os.path.join(input_dir, f) for f in params["fusion"]["to_fuse"]]
     )
 
     FUSION_RESULTS_PATH = f"results/fusion/{output_dir}"
@@ -66,15 +67,15 @@ if __name__ == "__main__":
         for emotion in COLUMN_NAMES:
             pred_cols = [col for col in all_predictions.columns if 'pred' in col and col.startswith(emotion)]
             pred_mean = all_predictions[pred_cols].mean(axis=1)
-            pred_means[f'{emotion}_pred'] = pred_mean
+            pred_means[f'{emotion}'] = pred_mean
 
         true_cols = [col for col in all_predictions.columns if 'true_x' in col]
         all_true = all_predictions[true_cols]
 
         all_true.columns = [col.rstrip('_x') for col in all_true.columns]
         filename_df = all_predictions['filename']
-        all_predictions_fusion = pd.concat([filename_df,all_true,pred_means],axis=1)
-
+        #all_predictions_fusion = pd.concat([filename_df,all_true,pred_means],axis=1)
+        all_predictions_fusion = pd.concat([filename_df, pred_means],axis=1)
 
         all_predictions_fusion.to_csv(os.path.join(FUSION_RESULTS_PATH, f"predictions.{partition}.csv"), index=False)
 

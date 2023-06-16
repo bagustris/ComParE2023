@@ -111,12 +111,14 @@ def run_svm(feature_folder, label_base, result_folder, metrics_folder, params):
                 "scaler": [StandardScaler(), MinMaxScaler()], # best MinMaxScaler
                 "svm__estimator": [clf_class(random_state=RANDOM_SEED)],
                 "svm__estimator__loss": [
-                    "epsilon_insensitive",
+                    # "epsilon_insensitive",
                     "squared_epsilon_insensitive", # best
                 ],
-                # "svm__estimator__C": np.logspace(-2, -6, num=5),
-                "svm__estimator__C": np.logspace(-2, 2, num=5),
+                "svm__estimator__C": np.logspace(-2, -6, num=5),
+                # "svm__estimator__C": [0.0001, 0.001, 0.01, 0.1, 1, 10],
+                # "svm__estimator__C": np.logspace(-2, 2, num=5),
                 "svm__estimator__max_iter": [50000],
+                "svm__estimator__dual": [False],
             }
         ]
     else:
@@ -147,7 +149,7 @@ def run_svm(feature_folder, label_base, result_folder, metrics_folder, params):
         n_jobs=-1,
         cv=split,
         refit=True,
-        verbose=0,
+        verbose=1,
         return_train_score=False,
     )
 
@@ -250,8 +252,8 @@ def run_svm(feature_folder, label_base, result_folder, metrics_folder, params):
 if __name__ == "__main__":
     feature_type = sys.argv[1]
     feature_base = f"./data/features/{feature_type}/"
-    result_folder = f"./results/svm/{feature_type}/"
-    metrics_folder = f"./metrics/svm/{feature_type}/"
+    result_folder = f"./results/svm_dfalse/{feature_type}/"
+    metrics_folder = f"./metrics/svm_dfalse/{feature_type}/"
     label_base = f"./data/lab"
 
     with open("params.yaml") as f:
