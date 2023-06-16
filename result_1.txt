@@ -1,0 +1,24 @@
+Analysis Started
+Anger Rho: 0.4894
+
+Boredom Rho: 0.6032
+
+Calmness Rho: 0.6061
+
+Concentration Rho: 0.5855
+
+Determination Rho: 0.5589
+
+Excitement Rho: 0.4669
+
+Interest Rho: 0.4238
+
+Sadness Rho: 0.5123
+
+Tiredness Rho: 0.5867
+
+Mean Rho Across All Classes 0.537
+This was trial 1 out of 5.
+
+Upload successfully! You will receive a confirmation mail with your result within the next 24 hours (Monday - Friday)!
+
